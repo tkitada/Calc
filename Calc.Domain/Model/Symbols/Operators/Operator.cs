@@ -6,5 +6,7 @@
     public abstract class Operator : Symbol
     {
         public abstract long Calc(long left, long right);
+
+        public abstract override string ToString();
     }
 }

@@ -17,14 +17,23 @@ namespace Calc.Domain.Model.States
             Right = right;
         }
 
-        public override State Input(Symbol symbol) => symbol switch
+        public override string? Main => Right.ToString();
+
+        public override string? Sub => Left.ToString();
+
+        public override State Input(Symbol symbol)
         {
-            Number number => new RightEntry(Left, Operator, Right * 10 + number.Value),
-            Operator @operator => new OperatorEntry(Operator.Calc(Left, Right), @operator),
-            Equal => new Result(Operator.Calc(Left, Right)),
-            Clear => this,
-            AllClear => new LeftEntry(),
-            _ => throw new ArgumentException(null, nameof(symbol))
-        };
+            if (Operator is null) throw new InvalidOperationException($"{nameof(Operator)} is null");
+
+            return symbol switch
+            {
+                Number number => new RightEntry(Left, Operator, Right * 10 + number.Value),
+                Operator @operator => new OperatorEntry(Operator.Calc(Left, Right), @operator),
+                Equal => new Result(Operator.Calc(Left, Right)),
+                Clear => new RightEntry(Left, Operator, 0),
+                AllClear => new LeftEntry(),
+                _ => throw new ArgumentException(null, nameof(symbol))
+            };
+        }
     }
 }

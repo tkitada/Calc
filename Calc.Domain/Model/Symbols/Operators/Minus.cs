@@ -6,6 +6,7 @@
     public class Minus : Operator
     {
         public override long Calc(long left, long right) => left - right;
-    }
 
+        public override string ToString() => "Minus";
+    }
 }

@@ -7,5 +7,4 @@
     {
         public override uint Value => 9;
     }
-
 }

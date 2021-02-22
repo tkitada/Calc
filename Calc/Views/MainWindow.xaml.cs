@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Calc.ViewModels;
+using System.Windows;
 
 namespace Calc.Views
 {
@@ -7,9 +8,13 @@ namespace Calc.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly MainWindowViewModel viewModel_ = new MainWindowViewModel();
+
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = viewModel_;
         }
     }
 }

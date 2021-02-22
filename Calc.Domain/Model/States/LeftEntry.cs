@@ -16,9 +16,13 @@ namespace Calc.Domain.Model.States
 
         public LeftEntry(long left) => Left = left;
 
+        public override string? Main => Left.ToString();
+
+        public override string? Sub => null;
+
         public override State Input(Symbol symbol) => symbol switch
         {
-            Number number => new LeftEntry(Left * 10 * number.Value),
+            Number number => new LeftEntry(Left * 10 + number.Value),
             Operator @operator => new OperatorEntry(Left, @operator),
             Equal => this,
             Clear or AllClear => new LeftEntry(),

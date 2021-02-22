@@ -1,6 +1,6 @@
-﻿namespace Calc.Application
+﻿namespace Calc.Application.Symbols
 {
-    public enum InputType
+    public enum SymbolType
     {
         Zero,
         One,
@@ -11,7 +11,7 @@
         Six,
         Seven,
         Eight,
-        Night,
+        Nine,
         Plus,
         Minus,
         Equal,

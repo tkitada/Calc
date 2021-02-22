@@ -1,11 +1,64 @@
 ﻿<Window x:Class="Calc.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Calc.Views"
+        xmlns:viewmodels="clr-namespace:Calc.ViewModels"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="680" Width="440">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Background" Value="White" />
+            </Style>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="FontSize" Value="48" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+                <Setter Property="Margin" Value="0.5" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionColorKey}}" />
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="4" Margin="3 0 3 0" Text="{Binding MainDisplay}" FontSize="72" TextAlignment="Right" />
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="3" Text="{Binding SubDisplay}" FontSize="48" TextAlignment="Right" />
+        <TextBlock Grid.Row="0" Grid.Column="3" Margin="0 3 3 3" Text="{Binding OperatorDisplay}" FontSize="48" TextAlignment="Center" />
+
+        <Button Grid.Row="6" Grid.Column="0" Command="{Binding PushZeroCmd}">0</Button>
+        <Button Grid.Row="5" Grid.Column="0" Command="{Binding PushOneCmd}">1</Button>
+        <Button Grid.Row="5" Grid.Column="1" Command="{Binding PushTwoCmd}">2</Button>
+        <Button Grid.Row="5" Grid.Column="2" Command="{Binding PushThreeCmd}">3</Button>
+        <Button Grid.Row="4" Grid.Column="0" Command="{Binding PushFourCmd}">4</Button>
+        <Button Grid.Row="4" Grid.Column="1" Command="{Binding PushFiveCmd}">5</Button>
+        <Button Grid.Row="4" Grid.Column="2" Command="{Binding PushSixCmd}">6</Button>
+        <Button Grid.Row="3" Grid.Column="0" Command="{Binding PushSevenCmd}">7</Button>
+        <Button Grid.Row="3" Grid.Column="1" Command="{Binding PushEightCmd}">8</Button>
+        <Button Grid.Row="3" Grid.Column="2" Command="{Binding PushNineCmd}">9</Button>
+
+        <Button Grid.Row="3" Grid.Column="3" Command="{Binding PushPlusCmd}">+</Button>
+        <Button Grid.Row="4" Grid.Column="3" Command="{Binding PushMinusCmd}">-</Button>
+        <Button Grid.Row="5" Grid.Column="3" Grid.RowSpan="2" Command="{Binding PushEqualCmd}">=</Button>
+        <Button Grid.Row="6" Grid.Column="1" Command="{Binding PushClearCmd}">C</Button>
+        <Button Grid.Row="6" Grid.Column="2" Foreground="#FFFF4141" Command="{Binding PushAllClearCmd}">AC</Button>
     </Grid>
 </Window>

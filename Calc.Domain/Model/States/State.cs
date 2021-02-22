@@ -8,7 +8,7 @@ namespace Calc.Domain.Model.States
         /// <summary>
         /// 演算子
         /// </summary>
-        public Operator Operator { get; protected set; } = new Plus();
+        public Operator? Operator { get; protected set; }
 
         /// <summary>
         /// 左辺値
@@ -26,5 +26,15 @@ namespace Calc.Domain.Model.States
         /// <param name="symbol">入力シンボル</param>
         /// <returns>遷移後の状態</returns>
         public abstract State Input(Symbol symbol);
+
+        /// <summary>
+        /// メインディスプレイに表示する値
+        /// </summary>
+        public abstract string? Main { get; }
+
+        /// <summary>
+        /// サブディスプレイに表示する値
+        /// </summary>
+        public abstract string? Sub { get; }
     }
 }

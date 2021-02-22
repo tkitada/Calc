@@ -12,6 +12,10 @@ namespace Calc.Domain.Model.States
     {
         public Result(long left) => Left = left;
 
+        public override string? Main => Left.ToString();
+
+        public override string? Sub => null;
+
         public override State Input(Symbol symbol) => symbol switch
         {
             Number number => new LeftEntry(number.Value),
