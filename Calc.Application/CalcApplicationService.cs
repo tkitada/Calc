@@ -1,12 +1,14 @@
-﻿using Calc.Domain.States.Models;
-using Calc.Domain.Symbols.Models;
+﻿using Calc.Domain.Model.States;
+using Calc.Domain.Model.Symbols;
+using Calc.Domain.Model.Symbols.Numbers;
+using Calc.Domain.Model.Symbols.Operators;
 using System;
 
 namespace Calc.Application
 {
     public static class CalcApplicationService
     {
-        private static StateBase state_ = new LeftEntry();
+        private static State state_ = new LeftEntry();
 
         public static void Input(InputType type) => state_ = state_.Input(type switch
         {
@@ -27,26 +29,5 @@ namespace Calc.Application
             InputType.AllClear => new AllClear(),
             _ => throw new ArgumentException(null, nameof(type))
         });
-    }
-
-    public enum InputType
-    {
-        Zero,
-        One,
-        Two,
-        Three,
-        Four,
-        Five,
-        Six,
-        Seven,
-        Eight,
-        Night,
-        Plus,
-        Minus,
-        Multi,
-        Divide,
-        Equal,
-        Clear,
-        AllClear,
     }
 }

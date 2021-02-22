@@ -1,0 +1,24 @@
+﻿using Calc.Domain.Model.Symbols;
+using Calc.Domain.Model.Symbols.Numbers;
+using Calc.Domain.Model.Symbols.Operators;
+using System;
+
+namespace Calc.Domain.Model.States
+{
+    /// <summary>
+    /// 結果表示状態
+    /// </summary>
+    public class Result : State
+    {
+        public Result(long left) => Left = left;
+
+        public override State Input(Symbol symbol) => symbol switch
+        {
+            Number number => new LeftEntry(number.Value),
+            Operator @operator => new OperatorEntry(Left, @operator),
+            Equal => this,
+            Clear or AllClear => new LeftEntry(),
+            _ => throw new ArgumentException(null, nameof(symbol))
+        };
+    }
+}
